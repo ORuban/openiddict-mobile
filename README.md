@@ -4,3 +4,4 @@ Going to describe steps to make react-native app and Auth Server based on [OpenI
 
 Wiki
 - added "Heroku PostgreSQL" page
+- added "Run SQL Server 2017 locally with Docker" page
