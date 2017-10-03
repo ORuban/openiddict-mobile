@@ -14,16 +14,20 @@ import {
 } from 'react-native';
 
 import SafariView from 'react-native-safari-view';
+import { AuthClient } from './app/AuthClient';
 
 export default class appClient extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.authClient = new AuthClient();
+    this._loginClickHandler = this._loginClickHandler.bind(this);
+  }
+  
   _loginClickHandler() {
-    SafariView.isAvailable()
-      .then(SafariView.show({
-        url: "https://github.com"
-      }))
-      .catch(error => {
-        // Fallback WebView code for iOS 8 and earlier
-      });
+
+    this.authClient.login();
   }
 
   render() {

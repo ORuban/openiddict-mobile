@@ -28,7 +28,9 @@ namespace AuthorizationServer
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 // Configure the context to use Microsoft SQL Server.
+                // Un-comment appropriate lines:
                 options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"]);
+                // options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionStringDocker"]);
 
                 // Register the entity sets needed by OpenIddict.
                 // Note: use the generic overload if you need

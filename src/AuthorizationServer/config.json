@@ -1,7 +1,8 @@
 {
   "Data": {
     "DefaultConnection": {
-      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=openiddict-code-flow-sample;Trusted_Connection=True;MultipleActiveResultSets=true"
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=openiddict-sample;Trusted_Connection=True;MultipleActiveResultSets=true",
+      "ConnectionStringDocker": "Server=127.0.0.1,1401;Database=openiddict-sample;User Id=SA;Password=<YourStrong!Passw0rd>;"
     }
   }
 }
