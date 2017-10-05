@@ -29,7 +29,7 @@ export class AuthClient {
                 '&client_id=appClient',
                 '&client_secret=ECF8D87D-F510-405A-96D7-4D989D177840',
                 '&scope=offline_access',
-                '&redirect_uri=oruban.appClient://signin-oidc',
+                '&redirect_uri=openiddictmobilesample://signin-oidc',
                 '&nonce=nonce',
                 '&state=state'
                  ].join('')
