@@ -40,6 +40,17 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>openiddictmobilesample</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>openiddict.mobile.sample</string>
+		</dict>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
