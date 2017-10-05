@@ -159,17 +159,25 @@ namespace AuthorizationServer
 
                 var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
 
-                if (await manager.FindByClientIdAsync("appClient", cancellationToken) == null)
+                var mobileApplication = await manager.FindByClientIdAsync("appClient", cancellationToken);
+                if (mobileApplication == null)
                 {
-                    var application = new OpenIddictApplication
+                    mobileApplication = new OpenIddictApplication
                     {
                         ClientId = "appClient",
                         DisplayName = "React Native client application",
-                        LogoutRedirectUri = "oruban.appClient://logout",
-                        RedirectUri = "oruban.appClient://signin-oidc"
+                        LogoutRedirectUri = "openiddictmobilesample://logout",
+                        RedirectUri = "openiddictmobilesample://signin-oidc"
                     };
 
-                    await manager.CreateAsync(application, "ECF8D87D-F510-405A-96D7-4D989D177840", cancellationToken);
+                    await manager.CreateAsync(mobileApplication, "ECF8D87D-F510-405A-96D7-4D989D177840", cancellationToken);
+                }
+                else 
+                {
+                    // you may use this for application info updating. 
+                    // For example, the following will changes the redirect URL 
+                    mobileApplication.RedirectUri = "openiddictmobilesample://signin-oidc";
+                    await manager.UpdateAsync(mobileApplication, cancellationToken);
                 }
 
                 // To test this sample with Postman, use the following settings:
