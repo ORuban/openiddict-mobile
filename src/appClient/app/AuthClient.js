@@ -19,6 +19,9 @@ export class AuthClient {
         this.client_id = 'appClient';
         this.client_secret = 'ECF8D87D-F510-405A-96D7-4D989D177840';
         this.redirect_uri = 'openiddictmobilesample://signin-oidc';
+
+        this.nonce = 'nonce'; //todo: should be a random string
+        this.state = 'state'; //todo: should be a random string
  
         this.handleUrl = this.handleUrl.bind(this);
      }
@@ -34,8 +37,13 @@ export class AuthClient {
                 '&client_secret='+this.client_secret,
                 '&scope=offline_access',
                 '&redirect_uri='+this.redirect_uri,
-                '&nonce=nonce',
-                '&state=state'
+                // From: http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation
+                // nonce: OPTIONAL. String value used to associate a Client session with an ID Token, and to mitigate replay attacks.
+                // The value is passed through unmodified from the Authentication Request to the ID Token. Sufficient entropy MUST be present in the nonce values used to prevent attackers from guessing values.
+                // For implementation notes, see Section 15.5.2 (http://openid.net/specs/openid-connect-core-1_0.html#NonceNotes).
+                '&nonce='+this.nonce,
+                // state: RECOMMENDED. Opaque value used to maintain state between the request and the callback.
+                '&state='+this.state
                  ].join('')
                });
      }
@@ -47,6 +55,10 @@ export class AuthClient {
         SafariView.dismiss();
         
         const parsed = parseUrl(event.url);
+
+        // todo: app MUST verify that the state value is equal to the value of state parameter in the Authorization Request.
+        // const state = parsed["queryParams"]["state"];
+         
         const code = parsed["queryParams"]["code"];
         
         this.getAccessToken(code)
