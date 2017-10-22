@@ -48,7 +48,7 @@ export class AuthClient {
                });
      }
 
-    handleUrl (event) {
+    async handleUrl (event) {
         console.log('handleUrl executing');        
         Linking.removeEventListener('url', this.handleUrl);
 
@@ -61,11 +61,11 @@ export class AuthClient {
          
         const code = parsed["queryParams"]["code"];
         
-        this.getAccessToken(code)
-            .then( (token) => console.log('Access Token: ' + token));
+        let accessToken = await this.getAccessToken(code);
+        console.log('Access Token: ' + accessToken);
     }
 
-    getAccessToken(code) {
+    async getAccessToken(code) {
 
         const body = {
             'client_id': this.client_id,
@@ -75,15 +75,16 @@ export class AuthClient {
             'redirect_uri': this.redirect_uri
         };
       
-        return postForm(this.base_provider_url+'connect/token', body)
-          .then((response) => response.json())
-          .then((responseJson) => {
-            return responseJson.access_token;
-          })
-          .catch(err => {
+        
+        try {
+            let rawResponse = await postForm(this.base_provider_url+'connect/token', body);
+            let jsonResponse = await rawResponse.json();
+            return jsonResponse.access_token;
+        }
+        catch(err) {
             console.log('There was an error' + err);
-          }
-          );;
+            // Handle exceptions
+        }
     }
 }
 
