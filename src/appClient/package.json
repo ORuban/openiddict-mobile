@@ -10,7 +10,8 @@
     "query-string": "^5.0.0",
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.4",
-    "react-native-safari-view": "^2.1.0"
+    "react-native-safari-view": "^2.1.0",
+    "react-native-sha256": "^1.1.1"
   },
   "devDependencies": {
     "babel-jest": "21.0.2",
