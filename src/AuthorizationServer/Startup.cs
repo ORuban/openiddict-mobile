@@ -166,8 +166,8 @@ namespace AuthorizationServer
                     {
                         ClientId = "appClient",
                         DisplayName = "React Native client application",
-                        LogoutRedirectUri = "openiddictmobilesample://logout",
-                        RedirectUri = "openiddictmobilesample://signin-oidc"
+                        PostLogoutRedirectUris = "openiddictmobilesample://logout",
+                        RedirectUris = "openiddictmobilesample://signin-oidc"
                     };
 
                     await manager.CreateAsync(mobileApplication, "ECF8D87D-F510-405A-96D7-4D989D177840", cancellationToken);
@@ -176,7 +176,7 @@ namespace AuthorizationServer
                 {
                     // you may use this for application info updating. 
                     // For example, the following will changes the redirect URL 
-                    mobileApplication.RedirectUri = "openiddictmobilesample://signin-oidc";
+                    mobileApplication.RedirectUris = "openiddictmobilesample://signin-oidc";
                     await manager.UpdateAsync(mobileApplication, cancellationToken);
                 }
 
@@ -195,7 +195,7 @@ namespace AuthorizationServer
                     {
                         ClientId = "postman",
                         DisplayName = "Postman",
-                        RedirectUri = "https://www.getpostman.com/oauth2/callback"
+                        RedirectUris = "https://www.getpostman.com/oauth2/callback"
                     };
 
                     await manager.CreateAsync(application, cancellationToken);
